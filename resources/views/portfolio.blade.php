@@ -19,6 +19,12 @@
         @foreach($projects as $project)
             <h2>{{$project->name}}</h2>
             <p>{{$project->description}}</p>
+            <ul>
+            @foreach($project->links as $link)
+                <li>{{$link->name}}</li>
+            @endforeach
+            </ul>
+            <hr>
         @endforeach
     </body>
 </html>

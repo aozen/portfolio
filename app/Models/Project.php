@@ -20,7 +20,7 @@ final class Project extends Model
         'name',
         'description',
         'status',
-        'order'
+        'order',
     ];
 
     protected $casts = [

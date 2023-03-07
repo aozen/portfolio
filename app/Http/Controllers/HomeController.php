@@ -9,6 +9,7 @@ class HomeController extends Controller
     public function index()
     {
         $projects = Project::all();
+
         return view('portfolio', ['projects' => $projects]);
     }
 }

@@ -7,16 +7,16 @@ use Illuminate\Support\Facades\Schema;
 return new class () extends Migration {
     public function up()
     {
-        Schema::create('links', function (Blueprint $table): void {
-            $table->foreignUlid('project_id')->index()->constrained()->cascadeOnDelete();
+        Schema::create('tags', function (Blueprint $table): void {
+            $table->ulid('id')->primary();
             $table->string('name');
-
-//            $table->foreign('project_id')->references('id')->on('projects');
+            $table->string('image_path')->nullable();
+            $table->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('links');
+        Schema::dropIfExists('tags');
     }
 };

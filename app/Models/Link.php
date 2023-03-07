@@ -10,6 +10,8 @@ class Link extends Model
 
     protected $fillable = [
         'project_id',
-        'name'
+        'name',
     ];
+
+    public $timestamps = false;
 }

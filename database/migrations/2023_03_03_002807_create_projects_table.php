@@ -1,17 +1,19 @@
 <?php
 
+use App\Enums\ProjectStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class () extends Migration {
     public function up()
     {
-        Schema::create('projects', function (Blueprint $table) {
-            $table->id();
+        Schema::create('projects', function (Blueprint $table): void {
+            $table->ulid('id')->primary();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->tinyInteger('status')->default(0);
+            $table->string('status')->default(ProjectStatus::DRAFT->value);
+            $table->unsignedBigInteger('order')->default(0);
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });

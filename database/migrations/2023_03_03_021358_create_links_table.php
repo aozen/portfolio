@@ -10,8 +10,6 @@ return new class () extends Migration {
         Schema::create('links', function (Blueprint $table): void {
             $table->foreignUlid('project_id')->index()->constrained()->cascadeOnDelete();
             $table->string('name');
-
-//            $table->foreign('project_id')->references('id')->on('projects');
         });
     }
 

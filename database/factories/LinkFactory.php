@@ -13,7 +13,7 @@ class LinkFactory extends Factory
     public function definition(): array
     {
         return [
-            'project_id' => Project::factory(),
+            'project_id' => Project::inRandomOrder()->first(),
             'name' => $this->faker->url(),
         ];
     }

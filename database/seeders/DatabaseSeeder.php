@@ -18,11 +18,11 @@ class DatabaseSeeder extends Seeder
         User::factory($count = 10)->create();
         $this->printTime($micro_time, "User", $count);
 
-        Project::factory($count = 10)->create();
-        $this->printTime($micro_time, "Project", $count);
-
         Tag::factory($count = 50)->create();
         $this->printTime($micro_time, "Tag", $count);
+
+        Project::factory($count = 10)->create();
+        $this->printTime($micro_time, "Project", $count);
 
         Link::factory($count = 20)->create();
         $this->printTime($micro_time, "Link", $count);

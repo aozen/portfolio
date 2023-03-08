@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Enums\ProjectStatus;
 use App\Models\Project;
+use App\Models\Tag;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
@@ -23,5 +24,12 @@ class ProjectFactory extends Factory
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];
+    }
+
+    public function configure()
+    {
+        return $this->afterCreating(function (Project $project) {
+            $project->tags()->saveMany(Tag::inRandomOrder()->take(rand(2, 5))->get());
+        });
     }
 }

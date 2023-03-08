@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Link;
 use App\Models\Project;
 use App\Models\Tag;
@@ -27,8 +26,6 @@ class DatabaseSeeder extends Seeder
 
         Link::factory($count = 20)->create();
         $this->printTime($micro_time, "Link", $count);
-
-
     }
 
     public function printTime(&$micro_time, $factory_name, $count)

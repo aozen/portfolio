@@ -20,11 +20,4 @@ class TagFactory extends Factory
             'updated_at' => Carbon::now(),
         ];
     }
-
-    public function configure()
-    {
-        return $this->afterCreating(function (Tag $tag) {
-            $tag->projects()->saveMany(Project::inRandomOrder(2)->get());
-        });
-    }
 }

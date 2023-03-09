@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use App\Models\Link;
+use App\Models\Post;
 use App\Models\Project;
 use App\Models\Tag;
 use App\Models\User;
@@ -26,6 +28,12 @@ class DatabaseSeeder extends Seeder
 
         Link::factory($count = 20)->create();
         $this->printTime($micro_time, "Link", $count);
+
+        Category::factory($count = 5)->create();
+        $this->printTime($micro_time, "Category", $count);
+
+        Post::factory($count = 50)->create();
+        $this->printTime($micro_time, "Post", $count);
     }
 
     public function printTime(&$micro_time, $factory_name, $count)

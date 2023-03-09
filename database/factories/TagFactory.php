@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Project;
 use App\Models\Tag;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Carbon;

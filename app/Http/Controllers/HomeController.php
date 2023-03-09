@@ -12,4 +12,9 @@ class HomeController extends Controller
 
         return view('portfolio', ['projects' => $projects]);
     }
+
+    public function blog()
+    {
+        return view('blog');
+    }
 }

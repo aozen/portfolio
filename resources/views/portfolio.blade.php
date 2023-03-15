@@ -1,5 +1,5 @@
 @extends('components.master')
-@section('title', ' | Wall')
+@section('title', ' | Portfolio')
 @section('content')
     <div class="mx-auto max-w-7xl px-6 lg:px-8 mb-10 sm:mb-16">
         <div class="mx-auto max-w-2xl lg:mx-0 grid">
@@ -39,7 +39,7 @@
             <article id="project-info" class="flex max-w-2xl flex-col items-start justify-between p-5 col-span-2" style="box-shadow: 0 0 2px 1px #4d4d4d, 0 0 3px 2px #666666, 0 0 4px 3px #7b7b7b, 0 0 5px 4px #999999, inset 0 0 8px 0 #af3838;">
                 <div class="group relative">
                     <div class="flex gap-x-4 text-xs w-full mt-3 flex-end justify-between items-center">
-                        <a href="{{ $info['personal_info']['details']['who_am_i']['resume_link'] }}" download>
+                        <a href="{{ $info['details']['who_am_i']['resume_link'] }}" download>
                             DOWNLOAD RESUME
                         </a>
                         <div class="w-2/12">
@@ -52,7 +52,7 @@
                         </a>
                     </h4>
                     <p class="mt-5 text-sm leading-6 text-gray-600">
-                        {!! $info['personal_info']['details']['who_am_i']['description'] !!}
+                        {!! $info['details']['who_am_i']['description'] !!}
                     </p>
                 </div>
                 <div class="relative mt-3 flex items-center gap-x-4">

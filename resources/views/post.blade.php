@@ -1,4 +1,5 @@
 @extends('components.master')
+@section('title', ' | Blog | ' . $post->name)
 @section('content')
     <div class="flex gap-x-4 text-xs w-full mt-3 justify-around items-end">
         <a class="text-base font-bold tracking-tight text-gray-900" href="{{ route('blog.index') }}">

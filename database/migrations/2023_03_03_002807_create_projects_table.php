@@ -14,6 +14,7 @@ return new class () extends Migration {
             $table->text('description')->nullable();
             $table->string('status')->default(ProjectStatus::DRAFT->value);
             $table->unsignedBigInteger('order')->default(0);
+            $table->timestamp('production_date')->nullable();
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });

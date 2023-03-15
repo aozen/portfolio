@@ -10,6 +10,7 @@ use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Console\View\Components\TwoColumnDetail;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Cache;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,29 +18,43 @@ class DatabaseSeeder extends Seeder
     {
         $micro_time = microtime(true);
 
-        User::factory($count = 10)->create();
-        $this->printTime($micro_time, "User", $count);
+        for($i = 0; $i<10; $i++) {
+            User::factory()->create();
+        }
+        $this->printTime($micro_time, "User", $i);
 
-        Tag::factory($count = 50)->create();
-        $this->printTime($micro_time, "Tag", $count);
+        for($i = 0; $i<15; $i++) {
+            Tag::factory()->create();
+        }
+        $this->printTime($micro_time, "Tag", $i);
 
-        Project::factory($count = 10)->create();
-        $this->printTime($micro_time, "Project", $count);
+        for($i = 0; $i<10; $i++) {
+            Project::factory()->create();
+        }
+        $this->printTime($micro_time, "Project", $i);
 
-        Link::factory($count = 20)->create();
-        $this->printTime($micro_time, "Link", $count);
+        for($i = 0; $i<20; $i++) {
+            Link::factory()->create();
+        }
+        $this->printTime($micro_time, "Link", $i);
 
-        Category::factory($count = 5)->create();
-        $this->printTime($micro_time, "Category", $count);
+        for($i = 0; $i<5; $i++) {
+            Category::factory()->create();
+        }
+        $this->printTime($micro_time, "Category", $i);
 
-        Post::factory($count = 50)->create();
-        $this->printTime($micro_time, "Post", $count);
+        for($i = 0; $i<50; $i++) {
+            Post::factory()->create();
+        }
+        $this->printTime($micro_time, "Post", $i);
+
+        $this->forgetCache();
     }
 
     public function printTime(&$micro_time, $factory_name, $count)
     {
         $ms_time = number_format((microtime(true) - $micro_time) * 1000, 0);
-        $each_time = (int)str_replace(',', '', $ms_time) / $count;
+        $each_time = number_format(str_replace(',', '', $ms_time) / $count, 2);
         $text = $this->generateText($factory_name, $count, $each_time);
 
         with(new TwoColumnDetail($this->command->getOutput()))->render(
@@ -64,5 +79,11 @@ class DatabaseSeeder extends Seeder
         $text .= $this->generateDots($dots);
         $text .= $each_time . " ms for each";
         return $text;
+    }
+
+    public function forgetCache()
+    {
+        Cache::forget('projects');
+        Cache::forget('all_posts');
     }
 }

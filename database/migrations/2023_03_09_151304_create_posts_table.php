@@ -12,7 +12,7 @@ return new class extends Migration {
             $table->ulid('id')->primary();
             $table->foreignUlid('category_id')->index()->constrained()->cascadeOnDelete();
             $table->string('name');
-            $table->string('slug');
+            $table->string('slug')->unique();
             $table->text('text');
             $table->string('status')->default(PostStatus::DRAFT->value);
             $table->timestamps();

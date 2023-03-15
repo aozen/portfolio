@@ -15,6 +15,7 @@ class LinkFactory extends Factory
         return [
             'project_id' => Project::inRandomOrder()->first(),
             'name' => $this->faker->url(),
+            'description' => $this->faker->sentence(),
         ];
     }
 }

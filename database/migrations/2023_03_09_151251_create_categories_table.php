@@ -11,7 +11,7 @@ return new class extends Migration {
         Schema::create('categories', function (Blueprint $table) {
             $table->ulid('id')->primary();
             $table->string('name');
-            $table->string('slug');
+            $table->string('slug')->unique();
             $table->string('color')->default(CategoryColors::OTHER->value);
             $table->unsignedBigInteger('order')->default(0);
             $table->timestamps();

@@ -16,7 +16,7 @@ class Tag extends Model
 
     protected $fillable = [
         'name',
-        'image_path',
+        'icon',
     ];
 
     public function projects(): BelongsToMany

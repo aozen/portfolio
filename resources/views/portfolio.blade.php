@@ -1,37 +1,130 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('components.master')
+@section('title', ' | Wall')
+@section('content')
+    <div class="bg-white py-6 sm:py-8">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="mx-auto max-w-2xl lg:mx-0 grid">
+                @if(isset($tag))
+                <p class="mt-2 text-lg leading-8 text-gray-600">
+                    Filtered Tag: <span class="text-gray-800">{{ $tag->name }}</span>
+                </p>
 
-        <title>Laravel</title>
+                <a class="text-base font-bold tracking-tight text-gray-900 mt-3" href="{{ route('project.index') }}">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    Back To All Projects
+                </a>
+                @else
+                <a class="text-base font-bold tracking-tight text-gray-900 mt-3" href="{{ route('blog.index') }}">
+                    Go To Blog
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                @endif
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mt-10">
+                    My recent works
+                </h2>
+            </div>
 
-        <!-- Styles -->
-        <style>
-            html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:Figtree, sans-serif;font-feature-settings:normal}
-            .tag{padding: 10px 20px 10px 20px;background-color: rgb(246 168 82 / 75%);border-radius: 10px;margin-right: 10px;}
-            hr{margin-block-start: 1em;margin-block-end: 1em;}
-            a{color: inherit;}
-        </style>
-    </head>
-    <body>
-    My Projects
-    @foreach($projects as $project)
-        <h2>{{$project->name}}</h2>
-        <p>{{$project->description}}</p>
-        <ul>
-        @foreach($project->links as $link)
-            <li><a href="{{$link->name}}" target="_blank">{{$link->name}}</a></li>
-        @endforeach
-        </ul>
-        @foreach($project->tags as $tag)
-            <span class="tag">{{$tag->name}}</span>
-        @endforeach
-        <hr>
-    @endforeach
-    </body>
-</html>
+            <div id="container-projects" class="mx-auto mt-3 grid max-w-2xl grid-cols-1 gap-y-16 gap-x-8 border-t border-gray-200 pt-10 sm:mt-5 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+                <div class="max-w-xl col-span-1 shadow sm:shadow-md md:shadow-lg lg:shadow-xl xl:shadow-2xl border border-gray-900">
+                    <ul class="text-gray-700 w-full">
+                        @foreach($projects as $key => $project)
+                        <li class="block cursor-pointer p-2 hover:bg-gray-800 hover:text-gray-300" onclick="showProject({{$key}})">
+                                <i class="w-8 {{ $project->icon ?? "fa-solid fa-mountain-sun" }} p-2 rounded-full mx-2"></i>
+                                {{ $project->name }}
+                        </li>
+                        @endforeach
+                    </ul>
+                </div>
+                @if(isset($portfolio_image))
+                <article id="project-info" class="flex max-w-2xl flex-col items-start justify-between p-5 col-span-2" style="box-shadow: 0 0 2px 1px #4d4d4d, 0 0 3px 2px #666666, 0 0 4px 3px #7b7b7b, 0 0 5px 4px #999999, inset 0 0 8px 0 #af3838;">
+                    <div class="group relative">
+                        <div class="flex gap-x-4 text-xs w-full mt-3 flex-end justify-between items-center">
+                            <a href="{{ $info['personal_info']['details']['who_am_i']['resume_link'] }}" download>
+                                DOWNLOAD RESUME
+                            </a>
+                            <div class="w-2/12">
+                                <img src="{{ asset('images/my-pictures/not_ai.jpeg') }}" alt="..." class="shadow rounded-full max-w-full h-auto align-middle border-none" />
+                            </div>
+                        </div>
+                        <h4 class="mt-3">
+                            <a class="text-2xl">
+                                Who Am I?
+                            </a>
+                        </h4>
+                        <p class="mt-5 text-sm leading-6 text-gray-600">
+                            {!! $info['personal_info']['details']['who_am_i']['description'] !!}
+                        </p>
+                    </div>
+                    <div class="relative mt-3 flex items-center gap-x-4">
+                        <img src="{{ asset($portfolio_image['src']) }}" alt="{{ $portfolio_image['alt'] }}" title="Generated with AI">
+                    </div>
+                </article>
+                @endif
+                @foreach($projects as $key => $project)
+                    <article id="project-{{$key}}" class="@if(!isset($portfolio_image) && $key == 0) flex @else hidden @endif max-w-2xl flex-col items-start justify-between p-5 col-span-2" style="box-shadow: 0 0 2px 1px #4d4d4d, 0 0 3px 2px #666666, 0 0 4px 3px #7b7b7b, 0 0 5px 4px #999999, inset 0 0 8px 0 #7e00ffad;">
+                        <div class="group relative">
+                            <div class="flex gap-x-4 text-xs w-full mt-3 justify-between items-end">
+                                <h3 class="text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                                    <a class="text-xs">
+                                        {{$project->name}}
+                                    </a>
+                                </h3>
+                                <time datetime="2023-03-09" class="text-gray-500">{{ $project->production_date }}</time>
+                            </div>
+                            <h4 class="mt-3">
+                                <a class="text-2xl">
+                                    aaaaaaaaaa
+                                </a>
+                            </h4>
+                            <p class="mt-5 text-sm leading-6 text-gray-600 line-clamp-3">{{ $project->description }}</p>
+                        </div>
+                        <div class="mt-5">
+                            <h4 class="text-gray-700 mb-2">Open In Web</h4>
+                            <ul>
+                                @foreach($project->links as $key => $link)
+                                    <li><a href="{{ $link->name }}" target="_blank">{{ $link->description }}</a></li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        <div class="mt-3">
+                            @foreach($project->tags as $tag)
+                                <span class="tag"></span>
+                                <a href="{{ route('project.tags', ['slug' => $tag->name]) }}" class="bg-pink-400 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
+                                    <i class="{{ $tag->icon }}"></i> {{ $tag->name }}
+                                </a>
+                            @endforeach
+                        </div>
+                        <div class="relative mt-5 flex items-center gap-x-4">
+                            <img src="https://picsum.photos/500/200" alt="">
+                        </div>
+                    </article>
+                @endforeach
+            </div>
+        </div>
+    </div>
+@endsection
+
+@section('tail_js')
+    <script>
+        let currentProjectId = null;
+        const projectDivs = document.querySelectorAll("[id^='project-']");
+        const container = document.getElementById("container-projects");
+
+        function showProject(projectId) {
+            if (projectId !== currentProjectId) {
+                for (let i = 0; i < projectDivs.length; i++) {
+                    projectDivs[i].classList.add("hidden");
+                    projectDivs[i].classList.remove("flex");
+                }
+
+                let projectToDisplay = document.getElementById("project-" + projectId);
+                projectToDisplay.classList.remove("hidden");
+                projectToDisplay.classList.add("flex");
+
+                currentProjectId = projectId;
+            }
+        }
+    </script>
+
+@endsection

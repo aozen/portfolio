@@ -16,6 +16,7 @@ final class Post extends Model
     protected $table = 'posts';
 
     protected $fillable = [
+        'category_id',
         'name',
         'slug',
         'status',
@@ -30,8 +31,8 @@ final class Post extends Model
     {
         return $this->belongsTo(
             related: Category::class,
-            foreignKey: 'id',
-            ownerKey: 'category_id'
+            foreignKey: 'category_id',
+            ownerKey: 'id'
         );
     }
 }

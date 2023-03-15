@@ -9,8 +9,8 @@ return new class () extends Migration {
     {
         Schema::create('tags', function (Blueprint $table): void {
             $table->ulid('id')->primary();
-            $table->string('name');
-            $table->string('image_path')->nullable();
+            $table->string('name')->unique();
+            $table->string('icon')->nullable();
             $table->timestamps();
         });
     }

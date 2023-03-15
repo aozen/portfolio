@@ -17,7 +17,7 @@ class PostFactory extends Factory
 
     public function definition(): array
     {
-        $name = $this->faker->word();
+        $name = $this->faker->unique()->word;
 
         return [
             'category_id' => Category::inRandomOrder()->first(),

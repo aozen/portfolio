@@ -1,13 +1,8 @@
 @extends('components.master')
 @section('title', ' | Wall')
 @section('content')
-    <div class="bg-white py-12 sm:py-16">
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
         <div class="mx-auto max-w-2xl lg:mx-0 grid">
-            <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Blog Wall</h2>
-            <p class="mt-2 text-lg leading-8 text-gray-600">
-                {{ $category->name ?? "All Posts" }}
-            </p>
             @if(isset($category))
             <a class="text-base font-bold tracking-tight text-gray-900 mt-3" href="{{ route('blog.index') }}">
                 <i class="fa-solid fa-arrow-left"></i>
@@ -19,8 +14,11 @@
                 Back To Projects
             </a>
             @endif
+            <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mt-10">
+                {{ $category->name ?? "All Posts" }}
+            </h2>
         </div>
-        <div class="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-y-16 gap-x-8 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+        <div class="mx-auto mt-3 grid max-w-2xl grid-cols-1 gap-y-16 gap-x-8 border-t border-gray-200 pt-10 sm:mt-5 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
             @foreach($posts as $post)
                 <article class="flex max-w-xl flex-col items-start justify-between p-5" style="box-shadow:
                 0 0 2px 1px #4d4d4d,
@@ -51,5 +49,4 @@
             @endforeach
         </div>
     </div>
-</div>
 @endsection

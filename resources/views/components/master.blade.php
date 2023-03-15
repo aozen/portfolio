@@ -10,8 +10,10 @@
     @yield('head_js')
 </head>
 <body class="flex flex-col min-h-screen">
-    @yield('content')
-    @include('components.footer')
+    <div class="bg-white py-6 sm:py-8">
+        @yield('content')
+        @include('components.footer')
+    </div>
     @yield('tail_js')
 </body>
 </html>

@@ -27,7 +27,7 @@ final class Post extends Model
         'status' => PostStatus::class
     ];
 
-    public function category() : BelongsTo
+    public function category(): BelongsTo
     {
         return $this->belongsTo(
             related: Category::class,

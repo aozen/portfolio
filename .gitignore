@@ -18,3 +18,6 @@ yarn-error.log
 /.idea
 /.vscode
 PersonalNotes.md
+composer.lock
+/storage
+package-lock.json

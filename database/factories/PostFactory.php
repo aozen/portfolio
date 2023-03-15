@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Enums\CategoryColors;
 use App\Enums\PostStatus;
 use App\Models\Category;
 use App\Models\Post;

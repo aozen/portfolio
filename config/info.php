@@ -4,6 +4,7 @@ return [
     'full_name' => env('PORTFOLIO_FULL_NAME'),
     'title' => env('PORTFOLIO_TITLE'),
     'email' => env('PORTFOLIO_EMAIL'),
+    'image_myself' => env('PORTFOLIO_IMAGE_PATH'),
     'github' => env('PORTFOLIO_GITHUB'),
     'linkedin' => env('PORTFOLIO_LINKEDIN'),
     'instagram' => env('PORTFOLIO_INSTAGRAM'),

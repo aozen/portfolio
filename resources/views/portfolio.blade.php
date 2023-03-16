@@ -43,7 +43,7 @@
                             DOWNLOAD RESUME
                         </a>
                         <div class="w-2/12">
-                            <img src="{{ asset('images/my-pictures/not_ai.jpeg') }}" alt="..." class="shadow rounded-full max-w-full h-auto align-middle border-none" />
+                            <img src="{{ $info['image_myself'] }}" title="My self but much cooler" class="shadow rounded-full max-w-full h-auto align-middle border-none" />
                         </div>
                     </div>
                     <h4 class="mt-3">

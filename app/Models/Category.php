@@ -33,4 +33,12 @@ final class Category extends Model
             foreignKey: 'category_id'
         );
     }
+
+    public function images(): HasMany
+    {
+        return $this->hasMany(
+            related: Image::class,
+            foreignKey: 'model_id'
+        )->where('model_name', 'Category');
+    }
 }

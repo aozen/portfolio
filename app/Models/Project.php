@@ -47,6 +47,14 @@ final class Project extends Model
         );
     }
 
+    public function images(): HasMany
+    {
+        return $this->hasMany(
+            related: Image::class,
+            foreignKey: 'model_id'
+        )->where('model_name', 'Project');
+    }
+
     public function getProductionDateAttribute(): string
     {
         $date = Carbon::parse($this->attributes['production_date']);

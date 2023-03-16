@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 final class Post extends Model
 {
@@ -34,5 +35,13 @@ final class Post extends Model
             foreignKey: 'category_id',
             ownerKey: 'id'
         );
+    }
+
+    public function images(): HasMany
+    {
+        return $this->hasMany(
+            related: Image::class,
+            foreignKey: 'model_id'
+        )->where('model_name', 'Post');
     }
 }

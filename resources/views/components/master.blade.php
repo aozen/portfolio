@@ -12,8 +12,8 @@
 <body class="flex flex-col min-h-screen">
     <div class="bg-white py-6 sm:py-8">
         @yield('content')
-        @include('components.footer')
     </div>
+    @include('components.footer')
     @yield('tail_js')
 </body>
 </html>

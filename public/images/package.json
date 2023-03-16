@@ -1,0 +1,9 @@
+{
+    "name": "image_upload",
+    "version": "1.0.0",
+    "description": "Upload images with scp",
+    "scripts": {
+        "deploy": "scp -r * {user}@{server}:{full_path}"
+    },
+    "author": "Ali Özen"
+}

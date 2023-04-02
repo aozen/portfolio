@@ -9,11 +9,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 final class Project extends Model
 {
     use HasFactory;
     use HasUlids;
+    use SoftDeletes;
 
     protected $table = 'projects';
 
@@ -29,6 +31,15 @@ final class Project extends Model
         'deleted_at' => 'datetime',
         'production_date' => 'datetime',
         'status' => ProjectStatus::class,
+    ];
+
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $hidden = [
+        'deleted_at',
     ];
 
     public function links(): HasMany

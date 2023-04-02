@@ -12,8 +12,8 @@ return new class () extends Migration {
             $table->ulid('id')->primary();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->string('status')->default(ProjectStatus::DRAFT->value);
-            $table->unsignedBigInteger('order')->default(0);
+            $table->string('status')->nullable()->default(ProjectStatus::DRAFT->value);
+            $table->unsignedBigInteger('order')->nullable()->default(0);
             $table->timestamp('production_date')->nullable();
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();

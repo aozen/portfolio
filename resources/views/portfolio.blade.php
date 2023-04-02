@@ -43,7 +43,7 @@
                             DOWNLOAD RESUME
                         </a>
                         <div class="w-2/12">
-                            <img src="{{ $info['image_myself'] }}" title="My self but much cooler" class="shadow rounded-full max-w-full h-auto align-middle border-none" />
+                            <img src="{{ $info['image_myself'] }}" title="My self but much cooler" alt="AI generated myself" class="shadow rounded-full max-w-full h-auto align-middle border-none" />
                         </div>
                     </div>
                     <h4 class="mt-3">
@@ -81,7 +81,7 @@
                     <div class="mt-5">
                         <h4 class="text-gray-700 mb-2">Open In Web</h4>
                         <ul>
-                            @foreach($project->links as $key => $link)
+                            @foreach($project->links as $link)
                                 <li><a href="{{ $link->name }}" target="_blank">{{ $link->description }}</a></li>
                             @endforeach
                         </ul>
@@ -95,7 +95,18 @@
                         @endforeach
                     </div>
                     <div class="relative mt-5 flex items-center gap-x-4">
-                        <img src="https://picsum.photos/500/200" alt="">
+                        <div id="swiper-{{ $key }}" class="swiper portfolio-swiper">
+                            <div class="swiper-wrapper">
+                                <img class="swiper-slide" src="https://picsum.photos/400/200" alt="">
+                                <img class="swiper-slide" src="https://picsum.photos/200/200" alt="">
+                                <img class="swiper-slide" src="https://picsum.photos/300/100" alt="">
+                                <img class="swiper-slide" src="https://picsum.photos/650/200" alt="">
+                                <div class="swiper-button-prev"></div>
+                                <div class="swiper-button-next"></div>
+                                <div class="swiper-pagination"></div>
+
+                            </div>
+                        </div>
                     </div>
                 </article>
             @endforeach

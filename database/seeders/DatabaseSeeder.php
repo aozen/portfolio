@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         for ($i = 0; $i<10; $i++) {
             User::factory()->create();
         }
+        $this->call([UserSeeder::class]);
         $this->printTime($micro_time, "User", $i);
 
         for ($i = 0; $i<15; $i++) {

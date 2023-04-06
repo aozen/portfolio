@@ -26,6 +26,13 @@ final class Category extends Model
         'status' => CategoryColors::class,
     ];
 
+    /**
+     * The default folder to store images for the model.
+     *
+     * @var string
+     */
+    protected static string $defaultImageFolder = 'images/categories';
+
     public function posts(): HasMany
     {
         return $this->hasMany(

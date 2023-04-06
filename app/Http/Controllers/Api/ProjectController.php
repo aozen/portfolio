@@ -4,14 +4,18 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProjectRequest;
-use App\Models\Image;
+use App\Http\Traits\ImageTrait;
 use App\Models\Project;
+use App\Models\Tag;
 use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
+    use ImageTrait;
+
     public function store(ProjectRequest $request)
     {
+        // Create project if validation is ok
         $project = Project::create([
             'name' => $request->input('name'),
             'description' => $request->input('description'),
@@ -19,18 +23,19 @@ class ProjectController extends Controller
             'order' => $request->input('order'),
             'production_date' => $request->input('production_date'),
         ]);
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $file) {
-                $path = $file->store('images/project', 'public');
-                $title = $file->getClientOriginalName();
-                $image = new Image([
-                    'model_name' => 'Project',
-                    'model_id' => $project->id,
-                    'path' => $path,
-                    'title' => $title,
-                ]);
-                $image->save();
+
+        // Attach tags, create if not exists
+        if ($request->has('tags')) {
+            $tags = $request->input('tags');
+            foreach ($tags as $tag) {
+                $tag = Tag::firstOrCreate(['name' => $tag]);
+                $project->tags()->attach($tag);
             }
+        }
+
+        // Create images and store
+        if ($request->hasFile('images')) {
+            $this->saveImages($request->file('images'), $project);
         }
 
         return response()->json([
@@ -46,17 +51,7 @@ class ProjectController extends Controller
         $project->fill($data)->save();
 
         if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $file) {
-                $path = $file->store('images/project', 'public');
-                $title = $file->getClientOriginalName();
-                $image = new Image([
-                    'model_name' => 'Project',
-                    'model_id' => $project->id,
-                    'path' => $path,
-                    'title' => $title,
-                ]);
-                $image->save();
-            }
+            $this->saveImages($request->file('images'), $project);
         }
 
         return response()->json([

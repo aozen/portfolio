@@ -15,7 +15,7 @@ class HomeController extends Controller
     public function index()
     {
         $projects = Cache::remember('projects', 60*60*24*7, function () {
-            return Project::with('tags')->with('links')->get();
+            return Project::with(['tags', 'images'])->with('links')->get();
         });
 
         return view('portfolio', ['projects' => $projects, 'portfolio_image' => $this->homeImage()]);

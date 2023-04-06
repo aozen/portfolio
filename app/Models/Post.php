@@ -28,6 +28,14 @@ final class Post extends Model
         'status' => PostStatus::class
     ];
 
+    /**
+     * The default folder to store images for the model.
+     *
+     * @var string
+     */
+
+    protected static string $defaultImageFolder = 'images/posts';
+
     public function category(): BelongsTo
     {
         return $this->belongsTo(

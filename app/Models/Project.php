@@ -42,6 +42,13 @@ final class Project extends Model
         'deleted_at',
     ];
 
+    /**
+     * The default folder to store images for the model.
+     *
+     * @var string
+     */
+    protected static string $defaultImageFolder = 'images/projects';
+
     public function links(): HasMany
     {
         return $this->hasMany(

@@ -6,4 +6,8 @@
 
 .swiper-button-prev, .swiper-button-next {
     color: #ea00c8;
+    background-color: rgba(20,20,20,0.3);
+    padding: 35px 30px;
+    text-rendering: auto;
+
 }

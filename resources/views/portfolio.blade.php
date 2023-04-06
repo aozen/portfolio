@@ -125,9 +125,17 @@
                     projectDivs[i].classList.remove("flex");
                 }
 
+                // Toggle visibility of projects. Display just one.
                 let projectToDisplay = document.getElementById("project-" + projectId);
                 projectToDisplay.classList.remove("hidden");
                 projectToDisplay.classList.add("flex");
+
+                // Scroll to top of the displayed project
+                let topOffset = projectToDisplay.offsetTop;
+                window.scrollTo({
+                    top: topOffset,
+                    behavior: "smooth"
+                });
 
                 currentProjectId = projectId;
             }

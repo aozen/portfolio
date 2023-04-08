@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Enums\ProjectStatus;
+use App\Enums\Status;
 use App\Models\Project;
 use App\Models\Tag;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -18,7 +18,7 @@ class ProjectFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'description' => $this->faker->text(),
-            'status' => Arr::random(ProjectStatus::cases()),
+            'status' => Arr::random(Status::cases()),
             'order' => $this->faker->numberBetween(1, 10000),
             'production_date' => $this->faker->optional($weight = 5/10)->dateTimeBetween('-6 year', 'now'),
             'deleted_at' => $this->faker->optional($weight = 1/10)->dateTimeBetween('-1 year', 'now'),

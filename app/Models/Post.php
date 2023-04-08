@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Enums\PostStatus;
+use App\Enums\Status;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -25,7 +25,7 @@ final class Post extends Model
     ];
 
     protected $casts = [
-        'status' => PostStatus::class
+        'status' => Status::class
     ];
 
     /**

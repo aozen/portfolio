@@ -2,8 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\Status;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Validation\Rule;
 
 class ProjectRequest extends FormRequest
 {
@@ -12,7 +14,11 @@ class ProjectRequest extends FormRequest
         return [
             'name' => 'sometimes|required|string|max:255',
             'description' => 'sometimes|nullable|string',
-            'status' => 'nullable|string',
+            'status' => [
+                'nullable',
+                'string',
+                Rule::in(Status::list()),
+            ],
             'order' => 'nullable|integer',
             'production_date' => 'nullable|date_format:Y-m-d',
             'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:4096',

@@ -1,6 +1,6 @@
 <?php
 
-use App\Enums\PostStatus;
+use App\Enums\Status;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,7 +14,7 @@ return new class () extends Migration {
             $table->string('name');
             $table->string('slug')->unique();
             $table->text('text');
-            $table->string('status')->default(PostStatus::DRAFT->value);
+            $table->string('status')->default(Status::DRAFT->value);
             $table->timestamps();
         });
     }

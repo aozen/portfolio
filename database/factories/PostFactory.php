@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Enums\PostStatus;
+use App\Enums\Status;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -23,7 +23,7 @@ class PostFactory extends Factory
             'name' => $name,
             'slug' => Str::slug($name),
             'text' => $this->faker->text(300),
-            'status' => Arr::random(PostStatus::cases()),
+            'status' => Arr::random(Status::cases()),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];

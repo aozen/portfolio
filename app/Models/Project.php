@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Enums\ProjectStatus;
+use App\Enums\Status;
 use App\Observers\ProjectObserver;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
@@ -31,7 +31,7 @@ class Project extends Model
     protected $casts = [
         'deleted_at' => 'datetime',
         'production_date' => 'datetime',
-        'status' => ProjectStatus::class,
+        'status' => Status::class,
     ];
 
     /**

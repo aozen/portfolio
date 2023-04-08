@@ -36,7 +36,7 @@
                 </ul>
             </div>
             @if(isset($portfolio_image))
-            <article id="project-info" class="flex max-w-2xl flex-col items-start h-fit p-5 col-span-2" style="box-shadow: 0 0 2px 1px #4d4d4d, 0 0 3px 2px #666666, 0 0 4px 3px #7b7b7b, 0 0 5px 4px #999999, inset 0 0 8px 0 #af3838;">
+            <article id="project-info" class="flex max-w-2xl flex-col items-start h-fit p-5 col-span-2 sb-red">
                 <div class="group relative">
                     <div class="flex gap-x-4 text-xs w-full mt-3 flex-end justify-between items-center">
                         <a href="{{ $info['details']['who_am_i']['resume_link'] }}" download>
@@ -62,22 +62,18 @@
             @endif
             @foreach($projects as $key => $project)
                 <article id="project-{{$key}}" class="@if(!isset($portfolio_image) && $key == 0) flex @else hidden @endif max-w-2xl flex-col items-start h-fit p-5 col-span-2" style="box-shadow: 0 0 2px 1px #4d4d4d, 0 0 3px 2px #666666, 0 0 4px 3px #7b7b7b, 0 0 5px 4px #999999, inset 0 0 8px 0 #7e00ffad;">
-                    <div class="group relative">
-                        <div class="flex gap-x-4 text-xs w-full mt-3 justify-between items-end">
-                            <h3 class="text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-                                <a class="text-xs">
-                                    {{$project->name}}
-                                </a>
-                            </h3>
+                    <div class="group relative w-full">
+                        <div class="flex gap-x-4 text-xs w-full mt-3 justify-end items-end">
                             <time datetime="2023-03-09" class="text-gray-500">{{ $project->production_date }}</time>
                         </div>
-{{--                        <h4 class="mt-3">--}}
-{{--                            <a class="text-2xl">--}}
-{{--                                aaaaaaaaaa--}}
-{{--                            </a>--}}
-{{--                        </h4>--}}
+                        <h4 class="mt-3">
+                            <a class="text-2xl">
+                                {{$project->name}}
+                            </a>
+                        </h4>
                         <p class="mt-5 text-sm leading-6 text-gray-600 line-clamp-3">{{ $project->description }}</p>
                     </div>
+                    @if(count($project->links) > 0)
                     <div class="mt-5">
                         <h4 class="text-gray-700 mb-2">Open In Web</h4>
                         <ul>
@@ -86,6 +82,7 @@
                             @endforeach
                         </ul>
                     </div>
+                    @endif
                     <div class="mt-3">
                         @foreach($project->tags as $tag)
                             <span class="tag"></span>

@@ -10,7 +10,7 @@ trait ImageTrait
 {
     private function saveImages(array $files, $record = null): void
     {
-        if($record) {
+        if ($record) {
             $image_folder = $record->image_folder;
             $model_name = class_basename(get_class($record));
             $model_id = $record->id;

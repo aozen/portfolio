@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\ProjectStatus;
+use App\Observers\ProjectObserver;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -11,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-final class Project extends Model
+class Project extends Model
 {
     use HasFactory;
     use HasUlids;
@@ -77,5 +78,12 @@ final class Project extends Model
     {
         $date = Carbon::parse($this->attributes['production_date']);
         return $date->format('M Y');
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::observe(ProjectObserver::class);
     }
 }

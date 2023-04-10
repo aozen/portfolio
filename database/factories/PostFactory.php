@@ -22,6 +22,7 @@ class PostFactory extends Factory
             'category_id' => Category::inRandomOrder()->first(),
             'name' => $name,
             'slug' => Str::slug($name),
+            'description' => $this->faker->text(100),
             'text' => $this->faker->text(300),
             'status' => Arr::random(Status::cases()),
             'created_at' => Carbon::now(),

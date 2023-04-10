@@ -13,6 +13,7 @@ return new class () extends Migration {
             $table->foreignUlid('category_id')->index()->constrained()->cascadeOnDelete();
             $table->string('name');
             $table->string('slug')->unique();
+            $table->text('description')->nullable();
             $table->text('text');
             $table->string('status')->default(Status::DRAFT->value);
             $table->timestamps();

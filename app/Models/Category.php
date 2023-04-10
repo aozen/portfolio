@@ -7,10 +7,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Enums\CategoryColors;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
-class Category extends Model
+class Category extends BaseModel
 {
     use HasFactory;
     use HasUlids;
@@ -60,9 +59,11 @@ class Category extends Model
             if (empty($model->slug)) {
                 $model->slug = Str::slug($model->name);
             }
+            $model->slug = Str::slug($model->slug);
+
             if (empty($model->color)) {
                 $model->color = CategoryColors::OTHER;
-            } else {
+            } elseif (!self::isEnum($model->color)) { // If its not enum, it will be probably string (came with an api)
                 $model->color = self::convertToColor($model->color);
             }
 

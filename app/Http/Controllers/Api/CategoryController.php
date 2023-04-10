@@ -11,7 +11,7 @@ class CategoryController extends Controller
     public function store(CategoryRequest $request)
     {
         // Create category if validation is ok
-        $project = Category::create([
+        $category = Category::create([
             'name' => $request->input('name'),
             'slug' => $request->input('slug'),
             'color' => $request->input('color'),
@@ -20,7 +20,7 @@ class CategoryController extends Controller
 
         return response()->json([
             'message' => 'Category created successfully',
-            'project' => $project,
+            'category' => $category,
         ], 201);
     }
 
@@ -32,7 +32,7 @@ class CategoryController extends Controller
 
         return response()->json([
             'message' => 'Category updated successfully',
-            'project' => $category,
+            'category' => $category,
         ], 200);
     }
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\ProjectController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\PostController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('projects', ProjectController::class);
     Route::apiResource('categories', CategoryController::class);
+    Route::apiResource('posts', PostController::class);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

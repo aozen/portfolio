@@ -37,7 +37,7 @@
             </div>
             @if(isset($portfolio_image))
             <article id="project-info" class="flex max-w-2xl flex-col items-start h-fit p-5 col-span-2 sb-red">
-                <div class="group relative">
+                <div class="group relative w-full">
                     <div class="flex gap-x-4 text-xs w-full mt-3 flex-end justify-between items-center">
                         <a href="{{ $info['details']['who_am_i']['resume_link'] }}" download>
                             DOWNLOAD RESUME

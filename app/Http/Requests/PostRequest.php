@@ -2,19 +2,29 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\Status;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Validation\Rule;
 
-class CategoryRequest extends FormRequest
+class PostRequest extends FormRequest
 {
     public function rules(): array
     {
         return [
-            'name' => 'sometimes|required|string|max:255',
-            'slug' => Rule::unique('categories', 'slug')->ignore($this->route('category')),
-            'color' => 'nullable|string',
-            'order' => 'nullable|integer',
+            'name' => 'required|string|max:255',
+            'slug' => [
+                'string',
+                'max:255',
+                Rule::unique('posts', 'slug')->ignore($this->route('post'))
+            ],
+            'description' => 'nullable|string',
+            'text' => 'required|string',
+            'status' => [
+                'nullable',
+                Rule::in(Status::list()),
+            ],
+            'category_id' => 'required|exists:categories,id',
         ];
     }
 

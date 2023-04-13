@@ -75,7 +75,7 @@
                             {{$project->name}}
                         </a>
                     </h4>
-                    <p class="mt-5 text-sm leading-6 text-gray-600 line-clamp-3">{{ $project->description }}</p>
+                    <p class="mt-5 text-sm leading-6 text-gray-600 line-clamp-3">{!! $project->description !!}</p>
                 </div>
                 @if(count($project->links) > 0)
                 <div class="mt-5">
@@ -101,11 +101,14 @@
                         </a>
                     @endforeach
                 </div>
-                <div class="relative mt-5 flex items-center gap-x-4">
+                <div class="w-full relative mt-5 flex items-center gap-x-4">
                     <div id="swiper-{{ $key }}" class="swiper portfolio-swiper">
                         <div class="swiper-wrapper">
                         @foreach($project->images as $image)
-                            <img class="swiper-slide" src="{{ asset("storage/" . $image->path) }}" alt="{{ $image->title }}" title="{{ $image->title }}">
+                            <div class="swiper-slide">
+                                <img src="{{ asset("storage/" . $image->path) }}" loading="lazy" alt="{{ $image->title }}" title="{{ $image->title }}"/>
+                                <div class="swiper-lazy-preloader"></div>
+                            </div>
                         @endforeach
                         </div>
                         <div class="swiper-button-prev"></div>

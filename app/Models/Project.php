@@ -23,6 +23,7 @@ class Project extends BaseModel
         'name',
         'description',
         'status',
+        'icon',
         'order',
         'production_date',
     ];

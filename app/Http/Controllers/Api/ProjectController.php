@@ -19,6 +19,7 @@ class ProjectController extends Controller
         $project = Project::create([
             'name' => $request->input('name'),
             'description' => $request->input('description'),
+            'icon' => $request->input('icon'),
             'status' => $request->input('status'),
             'order' => $request->input('order'),
             'production_date' => $request->input('production_date'),

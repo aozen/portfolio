@@ -27,16 +27,19 @@
         <div id="container-projects" class="mx-auto mt-3 grid max-w-2xl grid-cols-1 gap-y-16 gap-x-8 border-t border-gray-200 pt-10 sm:mt-5 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
             <div class="max-w-xl col-span-1 shadow sm:shadow-md md:shadow-lg lg:shadow-xl xl:shadow-2xl border border-gray-900">
                 <ul class="text-gray-700 w-full" id="title-container">
+                    <li class="block cursor-pointer p-2 hover:bg-gray-800 hover:text-gray-300" id="title-0" onclick="showProject(0)">
+                        <i class="w-8 fa-solid fa-code p-2 rounded-full mx-2"></i>
+                        About Me
+                    </li>
                     @foreach($projects as $key => $project)
-                    <li class="block cursor-pointer p-2 hover:bg-gray-800 hover:text-gray-300" id="title-{{$key}}" onclick="showProject({{$key}})">
+                    <li class="block cursor-pointer p-2 hover:bg-gray-800 hover:text-gray-300" id="title-{{$key+1}}" onclick="showProject({{$key+1}})">
                             <i class="w-8 {{ $project->icon ?? "fa-solid fa-mountain-sun" }} p-2 rounded-full mx-2"></i>
                             {{ $project->name }}
                     </li>
                     @endforeach
                 </ul>
             </div>
-            @if(isset($portfolio_image))
-            <article id="project-info" class="flex max-w-2xl flex-col items-start h-fit p-5 col-span-2 sb-red">
+            <article id="project-0" class="flex max-w-2xl flex-col items-start h-fit p-5 col-span-2 sb-red">
                 <div class="group relative w-full">
                     <div class="flex gap-x-4 text-xs w-full mt-3 flex-end justify-between items-center">
                         <a href="{{ $info['details']['who_am_i']['resume_link'] }}" download>
@@ -55,55 +58,62 @@
                         {!! $info['details']['who_am_i']['description'] !!}
                     </p>
                 </div>
+                @if(isset($portfolio_image))
                 <div class="relative mt-3 flex items-center gap-x-4">
                     <img src="{{ asset($portfolio_image['src']) }}" alt="{{ $portfolio_image['alt'] }}" title="Generated with AI">
                 </div>
+                @endif
             </article>
-            @endif
             @foreach($projects as $key => $project)
-                <article id="project-{{$key}}" class="@if(!isset($portfolio_image) && $key == 0) flex @else hidden @endif max-w-2xl flex-col items-start h-fit p-5 col-span-2" style="box-shadow: 0 0 2px 1px #4d4d4d, 0 0 3px 2px #666666, 0 0 4px 3px #7b7b7b, 0 0 5px 4px #999999, inset 0 0 8px 0 #7e00ffad;">
-                    <div class="group relative w-full">
-                        <div class="flex gap-x-4 text-xs w-full mt-3 justify-end items-end">
-                            <time datetime="2023-03-09" class="text-gray-500">{{ $project->production_date }}</time>
-                        </div>
-                        <h4 class="mt-3">
-                            <a class="text-2xl">
-                                {{$project->name}}
-                            </a>
-                        </h4>
-                        <p class="mt-5 text-sm leading-6 text-gray-600 line-clamp-3">{{ $project->description }}</p>
+            <article id="project-{{$key+1}}" class="hidden max-w-2xl flex-col items-start h-fit p-5 col-span-2 sb-purple1">
+                <div class="group relative w-full">
+                    <div class="flex gap-x-4 text-xs w-full mt-3 justify-end items-end">
+                        <time datetime="2023-03-09" class="text-gray-500">{{ $project->production_date }}</time>
                     </div>
-                    @if(count($project->links) > 0)
-                    <div class="mt-5">
-                        <h4 class="text-gray-700 mb-2">Open In Web</h4>
-                        <ul>
-                            @foreach($project->links as $link)
-                                <li><a href="{{ $link->name }}" target="_blank">{{ $link->description }}</a></li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    @endif
-                    <div class="mt-3">
-                        @foreach($project->tags as $tag)
-                            <span class="tag"></span>
-                            <a href="{{ route('project.tags', ['slug' => $tag->name]) }}" class="bg-pink-400 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
-                                <i class="{{ $tag->icon }}"></i> {{ $tag->name }}
-                            </a>
+                    <h4 class="mt-3">
+                        <a class="text-2xl">
+                            {{$project->name}}
+                        </a>
+                    </h4>
+                    <p class="mt-5 text-sm leading-6 text-gray-600 line-clamp-3">{{ $project->description }}</p>
+                </div>
+                @if(count($project->links) > 0)
+                <div class="mt-5">
+                    <h4 class="text-gray-700 mb-2">
+                        @if(str_contains($project->links[0]->name, 'github.com'))
+                            Open Repository
+                        @else
+                            Open In Web
+                        @endif
+                    </h4>
+                    <ul>
+                        @foreach($project->links as $link)
+                            <li><a href="{{ $link->name }}" target="_blank">{{ $link->description }}</a></li>
                         @endforeach
-                    </div>
-                    <div class="relative mt-5 flex items-center gap-x-4">
-                        <div id="swiper-{{ $key }}" class="swiper portfolio-swiper">
-                            <div class="swiper-wrapper">
-                            @foreach($project->images as $image)
-                                <img class="swiper-slide" src="{{ asset("storage/" . $image->path) }}" alt="{{ $image->title }}" title="{{ $image->title }}">
-                            @endforeach
-                            </div>
-                            <div class="swiper-button-prev"></div>
-                            <div class="swiper-button-next"></div>
-                            <div class="swiper-pagination"></div>
+                    </ul>
+                </div>
+                @endif
+                <div class="mt-3">
+                    @foreach($project->tags as $tag)
+                        <span class="tag"></span>
+                        <a href="{{ route('project.tags', ['slug' => $tag->name]) }}" class="bg-pink-400 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
+                            <i class="{{ $tag->icon }}"></i> {{ $tag->name }}
+                        </a>
+                    @endforeach
+                </div>
+                <div class="relative mt-5 flex items-center gap-x-4">
+                    <div id="swiper-{{ $key }}" class="swiper portfolio-swiper">
+                        <div class="swiper-wrapper">
+                        @foreach($project->images as $image)
+                            <img class="swiper-slide" src="{{ asset("storage/" . $image->path) }}" alt="{{ $image->title }}" title="{{ $image->title }}">
+                        @endforeach
                         </div>
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-pagination"></div>
                     </div>
-                </article>
+                </div>
+            </article>
             @endforeach
         </div>
     </div>
@@ -148,7 +158,7 @@
             li.addEventListener('click', () => {
                 const id = li.id.split('-')[1];
                 const projectDiv = document.querySelector(`#project-${id}`);
-                projectDiv.scrollIntoView({ behavior: 'smooth' });
+                projectDiv.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
             });
         });
     </script>

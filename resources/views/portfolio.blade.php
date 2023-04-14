@@ -46,7 +46,7 @@
                             DOWNLOAD RESUME
                         </a>
                         <div class="w-2/12">
-                            <img src="{{ $info['image_myself'] }}" title="My self but much cooler" alt="AI generated myself" class="shadow rounded-full max-w-full h-auto align-middle border-none" />
+                            <img src="{{ $info['image_myself'] }}" title="Myself" alt="My selfie" class="shadow rounded-full max-w-full h-auto align-middle border-none" />
                         </div>
                     </div>
                     <h4 class="mt-3">
@@ -75,24 +75,28 @@
                             {{$project->name}}
                         </a>
                     </h4>
-                    <p class="mt-5 text-sm leading-6 text-gray-600 line-clamp-3">{!! $project->description !!}</p>
+                    <div class="mt-5 text-sm leading-6 text-gray-600">
+                        {!! $project->description !!}
+                    </div>
                 </div>
-                @if(count($project->links) > 0)
                 <div class="mt-5">
-                    <h4 class="text-gray-700 mb-2">
-                        @if(str_contains($project->links[0]->name, 'github.com'))
-                            Open Repository
-                        @else
-                            Open In Web
-                        @endif
-                    </h4>
                     <ul>
                         @foreach($project->links as $link)
-                            <li><a href="{{ $link->name }}" target="_blank">{{ $link->description }}</a></li>
+                        <li>
+                            <a href="{{ $link->name }}" class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline" target="_blank">
+                                @if(!empty($link->description))
+                                    {{ $link->description }}
+                                @elseif(str_contains($link->name, 'github.com'))
+                                    Checkout Repository
+                                @else
+                                    Open In Web
+                                @endif
+                                <i class="fa-solid fa-arrow-right ml-0.5"></i>
+                            </a>
+                        </li>
                         @endforeach
                     </ul>
                 </div>
-                @endif
                 <div class="mt-3">
                     @foreach($project->tags as $tag)
                         <span class="tag"></span>

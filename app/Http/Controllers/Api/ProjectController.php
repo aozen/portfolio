@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProjectRequest;
 use App\Http\Traits\ImageTrait;
+use App\Models\Link;
 use App\Models\Project;
 use App\Models\Tag;
 use Illuminate\Support\Facades\Storage;
@@ -31,6 +32,14 @@ class ProjectController extends Controller
             foreach ($tags as $tag) {
                 $tag = Tag::firstOrCreate(['name' => $tag]);
                 $project->tags()->attach($tag);
+            }
+        }
+
+        // Attach tags, create if not exists
+        if ($request->has('links')) {
+            $links = $request->input('links');
+            foreach ($links as $link) {
+                Link::firstOrCreate(['name' => $link, 'project_id' => $project->id]);
             }
         }
 

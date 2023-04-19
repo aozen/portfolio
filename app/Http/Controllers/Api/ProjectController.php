@@ -14,7 +14,8 @@ class ProjectController extends Controller
 {
     use ImageTrait;
 
-    public function index() {
+    public function index()
+    {
         return response()->json([
             'projects' => Project::all(),
         ]);
@@ -95,14 +96,16 @@ class ProjectController extends Controller
         ], 204);
     }
 
-    private function saveTags(array $tags, Project $project) {
+    private function saveTags(array $tags, Project $project)
+    {
         foreach ($tags as $tag) {
             $tag = Tag::firstOrCreate(['name' => $tag]);
             $project->tags()->attach($tag);
         }
     }
 
-    private function saveLinks(array $links, Project $project) {
+    private function saveLinks(array $links, Project $project)
+    {
         foreach ($links as $link) {
             Link::firstOrCreate(['name' => $link, 'project_id' => $project->id]);
         }

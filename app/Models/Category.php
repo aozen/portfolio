@@ -63,8 +63,11 @@ class Category extends BaseModel
 
             if (empty($model->color)) {
                 $model->color = CategoryColors::OTHER;
-            } elseif (!self::isEnum($model->color)) { // If its not enum, it will be probably string (came with an api)
-                $model->color = self::convertToColor($model->color);
+            } elseif (is_string($model->color)) { // If its string, it will be probably string (came with an api)
+                if(isset(CategoryColors::list()[$model->color])) { // If given color is LARAVEL add it should be #FB503B
+                    $model->color = CategoryColors::list()[$model->color];
+                }
+                $model->color = self::convertToColor($model->color); // If given color is #123456, save it
             }
 
             if (empty($model->order)) {

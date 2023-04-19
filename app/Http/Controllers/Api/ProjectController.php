@@ -14,6 +14,12 @@ class ProjectController extends Controller
 {
     use ImageTrait;
 
+    public function index() {
+        return response()->json([
+            'projects' => Project::all(),
+        ]);
+    }
+
     public function store(ProjectRequest $request)
     {
         // Create project if validation is ok
@@ -28,19 +34,12 @@ class ProjectController extends Controller
 
         // Attach tags, create if not exists
         if ($request->has('tags')) {
-            $tags = $request->input('tags');
-            foreach ($tags as $tag) {
-                $tag = Tag::firstOrCreate(['name' => $tag]);
-                $project->tags()->attach($tag);
-            }
+            $this->saveTags($request->input('tags'), $project);
         }
 
-        // Attach tags, create if not exists
+        // create link if not exists
         if ($request->has('links')) {
-            $links = $request->input('links');
-            foreach ($links as $link) {
-                Link::firstOrCreate(['name' => $link, 'project_id' => $project->id]);
-            }
+            $this->saveLinks($request->input('links'), $project);
         }
 
         // Create images and store
@@ -59,6 +58,16 @@ class ProjectController extends Controller
         $project = Project::findOrFail($id);
         $data = $request->validated();
         $project->fill($data)->save();
+
+        // Attach tags, create if not exists
+        if ($request->has('tags')) {
+            $this->saveTags($request->input('tags'), $project);
+        }
+
+        // create link if not exists
+        if ($request->has('links')) {
+            $this->saveLinks($request->input('tags'), $project);
+        }
 
         if ($request->hasFile('images')) {
             $this->saveImages($request->file('images'), $project);
@@ -84,5 +93,18 @@ class ProjectController extends Controller
         return response()->json([
             'message' => 'Project removed successfully'
         ], 204);
+    }
+
+    private function saveTags(array $tags, Project $project) {
+        foreach ($tags as $tag) {
+            $tag = Tag::firstOrCreate(['name' => $tag]);
+            $project->tags()->attach($tag);
+        }
+    }
+
+    private function saveLinks(array $links, Project $project) {
+        foreach ($links as $link) {
+            Link::firstOrCreate(['name' => $link, 'project_id' => $project->id]);
+        }
     }
 }

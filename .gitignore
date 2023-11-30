@@ -21,4 +21,3 @@ PersonalNotes.md
 composer.lock
 /storage
 package-lock.json
-public/images/*

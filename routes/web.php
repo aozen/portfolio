@@ -12,3 +12,5 @@ Route::get('/wall', [BlogController::class, 'wall'])->name('blog.index');
 Route::redirect('/category', '/wall');
 Route::get('/category/{slug}', [BlogController::class, 'category'])->name('blog.category.show');
 Route::get('/post/{slug}', [BlogController::class, 'post'])->name('blog.post.show');
+
+Route::get('/text-editor', [HomeController::class, 'textEditor'])->name('text-editor');

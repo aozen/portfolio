@@ -46,4 +46,8 @@ class HomeController extends Controller
 
         return $files[rand(0, count($files) - 1)];
     }
+
+    public function textEditor() {
+        return view('text-editor');
+    }
 }

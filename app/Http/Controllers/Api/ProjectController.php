@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProjectRequest;
-use App\Http\Traits\ImageTrait;
 use App\Models\Link;
 use App\Models\Project;
 use App\Models\Tag;
@@ -12,8 +11,6 @@ use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
-    use ImageTrait;
-
     public function index()
     {
         return response()->json([

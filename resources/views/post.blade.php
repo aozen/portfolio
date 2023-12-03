@@ -17,9 +17,7 @@
     @else
         <div class="bg-contain bg-cover bg-no-repeat min-h-full h-96" style="background-image: url('{{ asset("images/logo/default-banner-full.jpg") }}')"></div>
     @endif
-    <div class="mx-auto max-w-7xl px-6 lg:px-8 mt-3 mb-10 sm:mb-16 ">
-        <pre>
-            {!! Blade::render($post->text) !!}
-        </pre>
+    <div class="mx-auto max-w-7xl px-6 lg:px-8 mt-3 mb-10 sm:mb-16 torchlight">
+        {!! Blade::render($post->text) !!}
     </div>
 @endsection

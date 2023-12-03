@@ -13,4 +13,6 @@ Route::redirect('/category', '/wall');
 Route::get('/category/{slug}', [BlogController::class, 'category'])->name('blog.category.show');
 Route::get('/post/{slug}', [BlogController::class, 'post'])->name('blog.post.show');
 
-Route::get('/text-editor', [HomeController::class, 'textEditor'])->name('text-editor');
+Route::get('/text-editor', [HomeController::class, 'textEditor'])->name('feature.editor');
+
+Route::get('/latest-images', [HomeController::class, 'latestImages'])->name('feature.latest-images');

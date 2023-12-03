@@ -1,4 +1,6 @@
 import Swiper, { Navigation, Pagination } from 'swiper';
+import './bootstrap';
+import 'tinymce/tinymce';
 
 Swiper.use([Navigation, Pagination]);
 
@@ -22,5 +24,3 @@ if (portfolio_swiper.length) {
         });
     });
 }
-
-import './bootstrap';

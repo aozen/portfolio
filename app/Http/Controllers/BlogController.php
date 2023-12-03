@@ -12,7 +12,7 @@ class BlogController extends Controller
 {
     public function wall(): View
     {
-        $posts = Cache::remember('all_posts', 60*60*24*7, function () {
+        $posts = Cache::remember('all_posts', 60 * 60 * 24 * 7, function () {
             return Post::where('status', '=', Status::ACTIVE)->with('category')->get();
         });
 

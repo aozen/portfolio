@@ -4,14 +4,11 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
-use App\Http\Traits\ImageTrait;
 use App\Models\Post;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
-    use ImageTrait;
-
     public function store(PostRequest $request)
     {
         // Create post if validation is ok

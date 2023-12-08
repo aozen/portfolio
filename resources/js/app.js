@@ -1,6 +1,14 @@
 import Swiper, { Navigation, Pagination } from 'swiper';
 import './bootstrap';
-import 'tinymce/tinymce';
+
+import Prism from 'prismjs';
+import 'prismjs/themes/prism-okaidia.css';
+import 'prismjs/components/prism-markup-templating';
+import 'prismjs/components/prism-javascript';
+import 'prismjs/components/prism-php';
+import 'prismjs/components/prism-bash';
+
+Prism.highlightAll();
 
 Swiper.use([Navigation, Pagination]);
 

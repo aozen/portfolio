@@ -5,7 +5,7 @@
 @endsection
 @section('content')
     <div class="mx-6">
-        <textarea class="tinyMce"></textarea>
+        <textarea></textarea>
     </div>
 @endsection
 
@@ -26,6 +26,18 @@
                 link_context_toolbar: true,
                 link_default_target: '_blank',
                 codesample_global_prismjs: true,
+                codesample_languages: [
+                    { text: 'HTML/XML', value: 'markup' },
+                    { text: 'JavaScript', value: 'javascript' },
+                    { text: 'CSS', value: 'css' },
+                    { text: 'PHP', value: 'php' },
+                    { text: 'Ruby', value: 'ruby' },
+                    { text: 'Python', value: 'python' },
+                    { text: 'Java', value: 'java' },
+                    { text: 'C', value: 'c' },
+                    { text: 'C#', value: 'csharp' },
+                    { text: 'C++', value: 'cpp' }
+                ],
                 setup: function (editor) {
                     editor.ui.registry.addButton('copySourceCode', {
                         icon: 'copy',
@@ -43,6 +55,5 @@
                 },
             });
         });
-
     </script>
 @endsection

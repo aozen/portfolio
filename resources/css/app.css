@@ -27,28 +27,16 @@
     inset 0 0 8px 0 #7e00ffad;
 }
 
-/*
- Add some vertical padding and expand the width
- to fill its container. The horizontal padding
- comes at the line level so that background
- colors extend edge to edge.
-*/
-pre code.torchlight {
-    @apply block py-4 min-w-max;
-}
+@layer base {
+    h1 {
+        @apply text-4xl;
+    }
 
-/*
- Horizontal line padding.
-*/
-pre code.torchlight .line {
-    @apply px-4;
-}
+    h2 {
+        @apply text-2xl;
+    }
 
-/*
- Push the code away from the line numbers and
- summary caret indicators.
-*/
-pre code.torchlight .line-number,
-pre code.torchlight .summary-caret {
-    @apply mr-4;
+    h3 {
+        @apply text-lg;
+    }
 }

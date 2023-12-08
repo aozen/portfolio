@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Aozen\Prism2Torchlight\TorchlightCast;
 use App\Enums\Status;
 use App\Observers\PostObserver;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
@@ -29,7 +28,6 @@ class Post extends BaseModel
 
     protected $casts = [
         'status' => Status::class,
-        'text' => TorchlightCast::class
     ];
 
     /**

@@ -96,12 +96,14 @@ return [
                 <p>Now refresh our page!</p>
                 <p><img src="/images/blog/tinymce_prism/prism_view.png"></p>
                 <p>This is the expected result!</p>
+                <p>&nbsp;</p>
                 <h2>Steps Summary</h2><hr>
                 <ul>
                 <li>Add TinymceJS:</li>
                 <li>Add <code>codesample</code> plugin to <code>tinymce.init({...})</code></li>
                 <li>Import Prism.js and your preferred languages</li>
                 </ul>
+                <p>&nbsp;</p>
                 <h2>The Grand Finale!</h2><hr>
                 <p>Your code is now shining bright with Prism.js. Feel free to switch up the theme and make it uniquely yours!</p>
                 <p>Happy coding, and keep spreading the dev love! 💻❤️</p>

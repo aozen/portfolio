@@ -5,7 +5,7 @@ use App\Enums\Status;
 return [
     'tinymceAndPrism' => [
         'category' => 'javascript',
-        'name' => 'Highlighting Code: Tinymce & Prism.js Magic',
+        'name' => 'Highlighting Code: Tinymce & Prism.js',
         'description' => 'Transform plain code to polished elegance style with just using javascript',
         'text' => <<<'TEXT'
                 <p>Hey there! 👋 Ready to add a touch of magic to your code on web pages? I am using this method when its necessary. Let's dive deep to explore a basic way to present your code snippets, tutorials, and more by highlighting them for better readability.</p>

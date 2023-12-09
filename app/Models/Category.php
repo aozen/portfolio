@@ -56,25 +56,17 @@ class Category extends BaseModel
         parent::boot();
 
         static::creating(function ($model) {
-            if (empty($model->slug)) {
-                $model->slug = Str::slug($model->name);
-            }
-            $model->slug = Str::slug($model->slug);
+            $model->slug = empty($model->slug) ? Str::slug($model->name) : Str::slug($model->slug);
 
-            if (empty($model->color)) {
-                $model->color = CategoryColors::OTHER;
-            } elseif (is_string($model->color)) { // If its string, it will be probably string (came with an api)
-                if(isset(CategoryColors::list()[$model->color])) { // If given color is LARAVEL add it should be #FB503B
-                    $model->color = CategoryColors::list()[$model->color];
-                }
-                $model->color = self::convertToColor($model->color); // If given color is #123456, save it
-            }
+            $colorMapping = CategoryColors::list();
+            $model->color = self::convertToColor(
+                $colorMapping[$model->color]
+                ?? $colorMapping[mb_strtoupper($model->name)]
+                ?? $model->color
+            );
 
-            if (empty($model->order)) {
-                $model->order = 999;
-            }
+            $model->order = empty($model->order) ? 999 : $model->order;
         });
-
         static::updating(function ($model) {
             if (!empty($model->color)) {
                 $model->color = self::convertToColor($model->color);

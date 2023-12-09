@@ -1,4 +1,17 @@
 import Swiper, { Navigation, Pagination } from 'swiper';
+import './bootstrap';
+
+import Prism from 'prismjs';
+import 'prismjs/themes/prism-okaidia.css';
+import 'prismjs/components/prism-markup-templating';
+import 'prismjs/components/prism-javascript';
+import 'prismjs/components/prism-php';
+import 'prismjs/components/prism-bash';
+import 'prismjs/plugins/toolbar/prism-toolbar.css'
+import 'prismjs/plugins/toolbar/prism-toolbar.js'
+import 'prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard'
+
+Prism.highlightAll();
 
 Swiper.use([Navigation, Pagination]);
 
@@ -22,5 +35,3 @@ if (portfolio_swiper.length) {
         });
     });
 }
-
-import './bootstrap';

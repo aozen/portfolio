@@ -21,11 +21,11 @@ class DatabaseSeeder extends BaseDatabaseSeeder
         $count = $this->createProjects();
         $this->printTime($micro_time, "Projects", $count);
 
-        //        $count = $this->createCategories();
-        //        $this->printTime($micro_time, "Category", $count);
-        //
-        //        $count = $this->createPosts();
-        //        $this->printTime($micro_time, "Post", $count);
+        $count = $this->createCategories();
+        $this->printTime($micro_time, "Category", $count);
+
+        $count = $this->createPosts();
+        $this->printTime($micro_time, "Post", $count);
 
         $this->forgetCache();
     }
@@ -68,18 +68,46 @@ class DatabaseSeeder extends BaseDatabaseSeeder
 
     public function createCategories(): int
     {
-        Category::factory()->create();
-        return 1;
+        $categories = self::getCategories();
+
+        foreach($categories as $category) {
+            Category::create($category);
+        }
+
+        return count($categories);
     }
 
     public function createPosts(): int
     {
-        Post::factory()->create();
+        $categories = Category::all()->pluck('id', 'slug');
+
+        $posts = self::getPosts();
+        foreach ($posts as $post) {
+            $newPost = Post::create([
+                'category_id' => $categories[$post['category']],
+                'name' => $post['name'],
+                'status' => $post['status'],
+                'description' => $post['description'],
+                'text' => $post['text'],
+            ]);
+
+            $this->saveImages($post['images'], $newPost);
+        }
         return 1;
     }
 
-    public function getProjects(): array
+    public static function getProjects(): array
     {
         return config('projects');
+    }
+
+    public static function getCategories(): array
+    {
+        return config('categories');
+    }
+
+    public static function getPosts(): array
+    {
+        return config('posts');
     }
 }

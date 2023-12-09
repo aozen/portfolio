@@ -2,7 +2,7 @@
 @section('title', ' | Portfolio')
 @section('content')
     <div class="mx-auto max-w-7xl px-6 lg:px-8 mb-10 sm:mb-16">
-        <div class="mx-auto max-w-2xl lg:mx-0 grid">
+        <div class="mx-auto lg:mx-0 grid">
             @if(isset($tag))
             <p class="mt-2 text-lg leading-8 text-gray-600">
                 Filtered Tag: <span class="text-gray-800">{{ $tag->name }}</span>
@@ -24,7 +24,7 @@
             </h2>
         </div>
 
-        <div id="container-projects" class="mx-auto mt-3 grid max-w-2xl grid-cols-1 gap-y-16 gap-x-8 border-t border-gray-200 pt-10 sm:mt-5 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+        <div id="container-projects" class="mx-auto mt-3 grid grid-cols-1 gap-y-16 gap-x-8 border-t border-gray-200 pt-10 sm:mt-5 sm:pt-16 lg:mx-0 lg:grid-cols-3">
             <div class="max-w-xl col-span-1 shadow sm:shadow-md md:shadow-lg lg:shadow-xl xl:shadow-2xl border border-gray-900">
                 <ul class="text-gray-700 w-full" id="title-container">
                     <li class="block cursor-pointer p-2 hover:bg-gray-800 hover:text-gray-300" id="title-0" onclick="showProject(0)">
@@ -39,7 +39,7 @@
                     @endforeach
                 </ul>
             </div>
-            <article id="project-0" class="flex max-w-2xl flex-col items-start h-fit p-5 col-span-2 sb-red">
+            <article id="project-0" class="flex max-w-fit flex-col items-start h-fit p-5 col-span-2 sb-red">
                 <div class="group relative w-full">
                     <div class="flex gap-x-4 text-xs w-full mt-3 flex-end justify-between items-center">
                         <a href="{{ $info['details']['who_am_i']['resume_link'] }}" download>
@@ -65,7 +65,7 @@
                 @endif
             </article>
             @foreach($projects as $key => $project)
-            <article id="project-{{$key+1}}" class="hidden max-w-2xl flex-col items-start h-fit p-5 col-span-2 sb-purple1">
+            <article id="project-{{$key+1}}" class="hidden max-w-fit flex-col items-start h-fit p-5 col-span-2 sb-purple1">
                 <div class="group relative w-full">
                     <div class="flex gap-x-4 text-xs w-full mt-3 justify-end items-end">
                         <time datetime="2023-03-09" class="text-gray-500">{{ $project->production_date }}</time>
@@ -143,13 +143,6 @@
                 let projectToDisplay = document.getElementById("project-" + projectId);
                 projectToDisplay.classList.remove("hidden");
                 projectToDisplay.classList.add("flex");
-
-                // Scroll to top of the displayed project
-                let topOffset = projectToDisplay.offsetTop;
-                window.scrollTo({
-                    top: topOffset,
-                    behavior: "smooth"
-                });
 
                 currentProjectId = projectId;
             }

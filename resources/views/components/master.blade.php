@@ -11,7 +11,7 @@
     @yield('head_js')
 </head>
 <body class="flex flex-col min-h-screen">
-    <div class="bg-white py-6 sm:py-8">
+    <div class="bg-white py-6">
         @yield('content')
     </div>
     @include('components.footer')

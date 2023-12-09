@@ -27,7 +27,7 @@ class Post extends BaseModel
     ];
 
     protected $casts = [
-        'status' => Status::class
+        'status' => Status::class,
     ];
 
     /**

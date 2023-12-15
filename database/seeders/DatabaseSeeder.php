@@ -36,6 +36,7 @@ class DatabaseSeeder extends BaseDatabaseSeeder
             'name' => 'Ali Ozen',
             'email' => 'admin@aliozendev.com',
             'password' => bcrypt('test'),
+            'is_admin' => 1,
             'email_verified_at' => now(),
             'remember_token' => Str::random(10)
         ]);

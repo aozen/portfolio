@@ -34,7 +34,7 @@ class DatabaseSeeder extends BaseDatabaseSeeder
     {
         User::create([
             'name' => 'Ali Ozen',
-            'email' => 'aliozendev@gmail.com',
+            'email' => 'admin@aliozendev.com',
             'password' => bcrypt('test'),
             'email_verified_at' => now(),
             'remember_token' => Str::random(10)

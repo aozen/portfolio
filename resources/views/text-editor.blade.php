@@ -38,7 +38,8 @@
                     { text: 'C#', value: 'csharp' },
                     { text: 'C++', value: 'cpp' },
                     { text: 'GO', value: 'go'},
-                    { text: 'Go-Mod', value: 'go-mod'}
+                    { text: 'Go-Mod', value: 'go-mod'},
+                    { text: 'Bash', value: 'bash'}
                 ],
                 setup: function (editor) {
                     editor.ui.registry.addButton('copySourceCode', {

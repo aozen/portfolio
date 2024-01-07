@@ -36,7 +36,9 @@
                     { text: 'Java', value: 'java' },
                     { text: 'C', value: 'c' },
                     { text: 'C#', value: 'csharp' },
-                    { text: 'C++', value: 'cpp' }
+                    { text: 'C++', value: 'cpp' },
+                    { text: 'GO', value: 'go'},
+                    { text: 'Go-Mod', value: 'go-mod'}
                 ],
                 setup: function (editor) {
                     editor.ui.registry.addButton('copySourceCode', {

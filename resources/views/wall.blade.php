@@ -33,7 +33,9 @@
                                     {{$post->category->name}}
                                 </a>
                             </h3>
-                            <time datetime="2023-03-09" class="text-gray-500">Mar 9, 2023</time>
+                            <time datetime="{{ $post->created_at->toDateString() }}" class="text-gray-500">
+                                {{ $post->created_at->format('M j, Y') }}
+                            </time>
                         </div>
                         <h4 class="mt-3">
                             <a href="{{ route('blog.post.show', ['slug' => $post->slug]) }}" class="text-2xl">
